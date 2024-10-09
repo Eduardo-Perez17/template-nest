@@ -12,7 +12,7 @@ import { User } from '../../../users/entities/user.entity';
 import { PayloadToken } from '../../models/token.model';
 
 // Interfaces
-import { IAuthLogin } from 'src/commons/Interface/auth.interface';
+import { IAuthLogin } from 'src/commons/Interface';
 import { ErrorManager } from 'src/commons/utils/error.manager';
 
 @Injectable()

@@ -4,12 +4,14 @@ import * as bcrypt from 'bcrypt';
 
 // Commons
 import { BaseEntity } from '../../../commons/baseEntity';
+
+// Models
 import { ROLES } from '../../../commons/models';
 
 // Interfaces
-import { IUser } from '../../../commons/Interface/user.interface';
+import { IUser } from '../../../commons/Interface';
 
-@Entity({ name: 'users' })
+@Entity({ name: 'user' })
 export class User extends BaseEntity implements IUser {
   @PrimaryGeneratedColumn()
   id: number;

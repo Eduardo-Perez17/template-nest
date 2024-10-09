@@ -30,7 +30,7 @@ import { Roles } from '../auth/decorators/roles.decorator';
 import { ROLES } from '../../commons/models';
 
 // Interceptors
-import { ResponseInterceptor } from '../../commons/interceptors/response.interceptor';
+import { ResponseInterceptor } from '../../commons/interceptors';
 
 @ApiTags('users')
 @Controller('users')

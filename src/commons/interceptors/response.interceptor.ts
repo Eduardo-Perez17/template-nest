@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 // DTO'S
-import { ResponseDto } from '../dtos/response.dto';
+import { ResponseDto } from '../dtos';
 
 @Injectable()
 export class ResponseInterceptor implements NestInterceptor {
