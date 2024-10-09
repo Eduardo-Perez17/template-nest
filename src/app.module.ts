@@ -10,6 +10,9 @@ import { DatabaseModule } from './database/database.module';
 import { UserModule } from './modules/users/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 
+// Web Socket
+import { WebSocketModule } from './websocket/websocket.module'
+
 // Config
 import { configSchema } from '../config/validationSchema';
 import { enviroments } from '../enviroments';
@@ -27,6 +30,7 @@ import config from '../config/config';
     DatabaseModule,
     AuthModule,
     JwtModule,
+    WebSocketModule,
   ],
   controllers: [],
   providers: [AuthService],

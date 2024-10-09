@@ -29,7 +29,9 @@ export class UserService {
       }
 
       const newUser = this.usersRepository.create(data);
-      return this.usersRepository.save(newUser);
+      const savedUser = await this.usersRepository.save(newUser);
+
+      return savedUser;
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     }
