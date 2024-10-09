@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 
 // Services
-import { UsersService } from '../../../users/users.service';
+import { UserService } from '../../../users/user.service';
 
 // Entity
 import { User } from '../../../users/entities/user.entity';
@@ -12,13 +12,13 @@ import { User } from '../../../users/entities/user.entity';
 import { PayloadToken } from '../../models/token.model';
 
 // Interfaces
-import { IAuthLogin } from 'src/commons/Interface/auth.interface';
+import { IAuthLogin } from 'src/commons/Interface';
 import { ErrorManager } from 'src/commons/utils/error.manager';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private usersService: UsersService,
+    private usersService: UserService,
     private jwtService: JwtService,
   ) {}
 

@@ -9,7 +9,7 @@ export const dataSourceOptions = new DataSource({
   type: 'mysql',
   url: `mysql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`,
   logging: false,
-  synchronize: false,
+  synchronize: true,
   entities: ['src/**/*.entity{.ts,.js}'],
   migrations: ['src/database/migrations/*.ts'],
   migrationsTableName: 'migrations',

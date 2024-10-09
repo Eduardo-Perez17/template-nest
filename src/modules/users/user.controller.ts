@@ -14,10 +14,10 @@ import {
 } from '@nestjs/swagger';
 
 // Services
-import { UsersService } from './users.service';
+import { UserService } from './user.service';
 
 // DTO'S
-import { CreateUserDto, ResponseCreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto, ResponseCreateUserDto } from './dto/createUser.dto';
 
 // Guards
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -27,17 +27,17 @@ import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 
 // Commons
-import { ROLES } from '../commons/models';
+import { ROLES } from '../../commons/models';
 
 // Interceptors
-import { ResponseInterceptor } from '../commons/interceptors/response.interceptor';
+import { ResponseInterceptor } from '../../commons/interceptors';
 
-@ApiTags('users')
-@Controller('users')
+@ApiTags('user')
+@Controller('user')
 @UseGuards(JwtAuthGuard, RolesGuard)
 @UseInterceptors(ResponseInterceptor)
-export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+export class UserController {
+  constructor(private readonly userService: UserService) {}
 
   @ApiBearerAuth()
   @ApiOperation({
@@ -53,9 +53,9 @@ export class UsersController {
     type: () => ResponseCreateUserDto,
     description: 'create user successfully.',
   })
-  @Roles(ROLES.SUPERADMIN)
+  @Roles(ROLES.SUPERADMIN, ROLES.ADMIN)
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+    return this.userService.create(createUserDto);
   }
 }
