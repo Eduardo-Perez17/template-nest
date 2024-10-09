@@ -7,7 +7,7 @@ import { AuthService } from './modules/auth/services/auth/auth.service';
 
 // Module
 import { DatabaseModule } from './database/database.module';
-import { UsersModule } from './modules/users/users.module';
+import { UserModule } from './modules/users/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 
 // Config
@@ -23,7 +23,7 @@ import config from '../config/config';
       isGlobal: true,
       validationSchema: configSchema,
     }),
-    UsersModule,
+    UserModule,
     DatabaseModule,
     AuthModule,
     JwtModule,

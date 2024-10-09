@@ -7,7 +7,7 @@ import { ConfigType } from '@nestjs/config';
 import { AuthService } from './services/auth/auth.service';
 
 // Modules
-import { UsersModule } from '../../modules/users/users.module';
+import { UserModule } from '../users/user.module';
 
 // Strategies
 import { LocalStrategy } from './strategies/local.strategy';
@@ -21,7 +21,7 @@ import config from 'config/config';
 
 @Module({
   imports: [
-    UsersModule,
+    UserModule,
     PassportModule,
     JwtModule.registerAsync({
       inject: [config.KEY],

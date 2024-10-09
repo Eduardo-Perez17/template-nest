@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 // DTO'S
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto } from './dto/createUser.dto';
 
 // Entity
 import { User } from './entities/user.entity';
@@ -12,7 +12,7 @@ import { User } from './entities/user.entity';
 import { ErrorManager } from 'src/commons/utils/error.manager';
 
 @Injectable()
-export class UsersService {
+export class UserService {
   constructor(
     @InjectRepository(User) private usersRepository: Repository<User>,
   ) {}
