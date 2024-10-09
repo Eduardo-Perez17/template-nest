@@ -13,8 +13,8 @@ import { IUser } from '../../../commons/Interface';
 
 @Entity({ name: 'user' })
 export class User extends BaseEntity implements IUser {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column({ type: 'varchar', length: 255, name: 'first_name' })
   firstName: string;

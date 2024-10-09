@@ -32,8 +32,8 @@ import { ROLES } from '../../commons/models';
 // Interceptors
 import { ResponseInterceptor } from '../../commons/interceptors';
 
-@ApiTags('users')
-@Controller('users')
+@ApiTags('user')
+@Controller('user')
 @UseGuards(JwtAuthGuard, RolesGuard)
 @UseInterceptors(ResponseInterceptor)
 export class UserController {
@@ -53,7 +53,7 @@ export class UserController {
     type: () => ResponseCreateUserDto,
     description: 'create user successfully.',
   })
-  @Roles(ROLES.SUPERADMIN)
+  @Roles(ROLES.SUPERADMIN, ROLES.ADMIN)
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
