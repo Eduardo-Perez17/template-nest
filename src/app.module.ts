@@ -6,18 +6,18 @@ import { JwtModule } from '@nestjs/jwt';
 import { AppController } from './app.controller';
 
 // Services
+import { AuthService } from './modules/auth/services/auth/auth.service';
 import { AppService } from './app.service';
-import { AuthService } from './auth/services/auth/auth.service';
 
 // Module
-import { UsersModule } from './users/users.module';
 import { DatabaseModule } from './database/database.module';
-import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './modules/users/users.module';
+import { AuthModule } from './modules/auth/auth.module';
 
-// Const
+// Config
+import { configSchema } from '../config/validationSchema';
 import { enviroments } from '../enviroments';
 import config from '../config/config';
-import { configSchema } from '../config/validationSchema';
 
 @Module({
   imports: [

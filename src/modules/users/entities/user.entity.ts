@@ -3,11 +3,11 @@ import { Exclude } from 'class-transformer';
 import * as bcrypt from 'bcrypt';
 
 // Commons
-import { ROLES } from '../../commons/models';
-import { BaseEntity } from '../../commons/baseEntity';
+import { BaseEntity } from '../../../commons/baseEntity';
+import { ROLES } from '../../../commons/models';
 
 // Interfaces
-import { IUser } from '../../commons/Interface/user.interface';
+import { IUser } from '../../../commons/Interface/user.interface';
 
 @Entity({ name: 'users' })
 export class User extends BaseEntity implements IUser {

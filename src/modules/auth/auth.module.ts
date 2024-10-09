@@ -7,7 +7,7 @@ import { ConfigType } from '@nestjs/config';
 import { AuthService } from './services/auth/auth.service';
 
 // Modules
-import { UsersModule } from '../users/users.module';
+import { UsersModule } from '../../modules/users/users.module';
 
 // Strategies
 import { LocalStrategy } from './strategies/local.strategy';

@@ -27,10 +27,10 @@ import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 
 // Commons
-import { ROLES } from '../commons/models';
+import { ROLES } from '../../commons/models';
 
 // Interceptors
-import { ResponseInterceptor } from '../commons/interceptors/response.interceptor';
+import { ResponseInterceptor } from '../../commons/interceptors/response.interceptor';
 
 @ApiTags('users')
 @Controller('users')
