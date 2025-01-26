@@ -25,8 +25,7 @@ import { UserService } from './user.service';
 import { CreateUserDto, ResponseCreateUserDto } from './dto/createUser.dto';
 
 // Guards
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { RolesGuard } from '../auth/guards/roles.guard';
+import { JwtAuthGuard, RolesGuard } from '../auth/guards';
 
 // Decorators
 import { Roles } from '../auth/decorators/roles.decorator';
@@ -49,7 +48,7 @@ import { ChangeUserPasswordBodyDto, UpdateUserDto } from './dto';
 // Decorators
 import { AllRoles, IsPublic, UserToken } from '../auth/decorators';
 
-@ApiTags('user')
+@ApiTags('User')
 @ApiBearerAuth()
 @Controller('user')
 @UseGuards(JwtAuthGuard, RolesGuard)
