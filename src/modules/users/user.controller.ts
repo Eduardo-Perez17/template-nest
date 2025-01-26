@@ -69,7 +69,7 @@ export class UserController {
     type: () => ResponseCreateUserDto,
     description: 'create user successfully.',
   })
-  @Roles(ROLES.SUPERADMIN, ROLES.ADMIN, ROLES.USER)
+  @IsPublic()
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);

@@ -16,6 +16,7 @@ import { WebSocketModule } from './websocket/websocket.module'
 // Config
 import { configSchema } from '../config/validationSchema';
 import { enviroments } from '../enviroments';
+import { RegisterModule } from './modules/register/register.module';
 import config from '../config/config';
 
 @Module({
@@ -31,6 +32,7 @@ import config from '../config/config';
     AuthModule,
     JwtModule,
     WebSocketModule,
+    RegisterModule,
   ],
   controllers: [],
   providers: [AuthService],
