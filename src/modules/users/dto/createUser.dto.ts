@@ -22,7 +22,7 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   @IsEnum(ROLES)
-  readonly role: ROLES;
+  role: ROLES;
 }
 
 export class ResponseCreateUserDto {

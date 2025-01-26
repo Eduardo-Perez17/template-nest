@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 
@@ -28,7 +28,7 @@ export class AuthService {
 
       if (!user)
         throw new ErrorManager({
-          type: 'UNAUTHORIZED',
+          type: HttpStatus.FORBIDDEN,
           message: 'Email or password are incorrect',
         });
 
@@ -39,7 +39,7 @@ export class AuthService {
       }
 
       throw new ErrorManager({
-        type: 'UNAUTHORIZED',
+        type: HttpStatus.CONFLICT,
         message: 'Email or password are incorrect',
       });
     } catch (error) {

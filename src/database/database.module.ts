@@ -20,7 +20,7 @@ import config from 'config/config';
           password,
           database: name,
           autoLoadEntities: true,
-          synchronize: true,
+          synchronize: false,
         };
       },
     }),
