@@ -72,7 +72,7 @@ export class RegisterController {
     summary: 'Get register by id.',
     description: 'This endpoint is to bring a register through the id.',
   })
-  @Roles(ROLES.SUPERADMIN, ROLES.ADMIN)
+  @AllRoles()
   @Get(':id')
   getUserById(@Param('id') id: string): Promise<Register> {
     return this.registerServices.getIdRegister({ id });
@@ -86,7 +86,7 @@ export class RegisterController {
     type: UpdateRegisterDto,
     description: 'The fields to be edit register.',
   })
-  @Roles(ROLES.SUPERADMIN, ROLES.ADMIN)
+  @AllRoles()
   @Patch(':id')
   editUser(
     @Param('id') id: string,
@@ -99,8 +99,8 @@ export class RegisterController {
     summary: 'Delete register.',
     description: 'This endpoint is for delete the register.',
   })
+  @AllRoles()
   @Delete(':id')
-  @Roles(ROLES.SUPERADMIN, ROLES.ADMIN)
   deleteUser(@Param('id') id: string): Promise<Register> {
     return this.registerServices.deleteRegister({ id });
   }
