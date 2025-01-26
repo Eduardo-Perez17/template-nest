@@ -5,10 +5,14 @@ import {
   UseGuards,
   UseInterceptors,
   Get,
+  Patch,
+  Param,
+  Delete,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiBody,
+  ApiOkResponse,
   ApiOperation,
   ApiResponse,
   ApiTags,
@@ -33,8 +37,17 @@ import { ROLES } from '../../commons/models';
 // Interceptors
 import { ResponseInterceptor } from '../../commons/interceptors';
 
+// Interface
+import { IUserAuth } from 'src/commons/Interface';
+
 // Entities
 import { User } from './entities/user.entity';
+
+// Dto's
+import { ChangeUserPasswordBodyDto, UpdateUserDto } from './dto';
+
+// Decorators
+import { AllRoles, IsPublic, UserToken } from '../auth/decorators';
 
 @ApiTags('user')
 @ApiBearerAuth()
@@ -71,5 +84,67 @@ export class UserController {
   @Get()
   getAllUsers(): Promise<User[]> {
     return this.userService.getAllUsers();
+  }
+
+  @ApiOperation({
+    summary: 'Change user password.',
+    description: 'this endpoint is for change user password.',
+  })
+  @ApiBody({
+    type: ChangeUserPasswordBodyDto,
+    description: 'The fields to change the password.',
+  })
+  @IsPublic()
+  @Patch('/changePassword')
+  changePassword(
+    @Body() body: ChangeUserPasswordBodyDto,
+    @UserToken() me: IUserAuth,
+  ): Promise<User> {
+    return this.userService.changePassword({ body, me });
+  }
+
+  @ApiOperation({
+    summary: 'Get user by id.',
+    description: 'This endpoint is to bring a user through the id.',
+  })
+  @ApiOkResponse({
+    type: User,
+    description: 'get user successfully.',
+  })
+  @AllRoles()
+  @Get(':id')
+  getUserById(@Param('id') id: string): Promise<User> {
+    return this.userService.getUserById({ id });
+  }
+
+  @ApiOperation({
+    summary: 'Edit user.',
+    description: 'This endpoint is for editing the user.',
+  })
+  @ApiBody({
+    type: UpdateUserDto,
+    description: 'The fields to be edit user.',
+  })
+  @ApiOkResponse({
+    type: User,
+    description: 'Edit user successfully.',
+  })
+  @Roles(ROLES.SUPERADMIN, ROLES.ADMIN)
+  @Patch(':id')
+  editUser(
+    @Param('id') id: string,
+    @Body() body: UpdateUserDto,
+  ): Promise<User> {
+    return this.userService.editUser({ id, body });
+  }
+
+  @ApiOperation({
+    summary: 'Delete user.',
+    description: 'This endpoint is for delete the user.',
+  })
+  @Delete(':id')
+  @Roles(ROLES.SUPERADMIN, ROLES.ADMIN)
+  deleteUser(@Param('id') id: string): Promise<User> {
+    return this.userService.deleteUser({ id });
   }
 }
