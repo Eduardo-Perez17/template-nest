@@ -2,7 +2,6 @@ import {
   BeforeInsert,
   Column,
   Entity,
-  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
@@ -16,7 +15,6 @@ import { ROLES } from '../../../commons/models';
 
 // Interfaces
 import { IUser } from '../../../commons/Interface';
-import { Register } from 'src/modules/register/entities/register.entity';
 
 @Entity({ name: 'user' })
 export class User extends BaseEntity implements IUser {
@@ -41,9 +39,6 @@ export class User extends BaseEntity implements IUser {
 
   @Column({ type: 'varchar', length: 8, default: null })
   otpCode: string;
-
-  @OneToMany(() => Register, (register) => register.user)
-  register: Register[];
 
   @BeforeInsert()
   async hashPassword() {

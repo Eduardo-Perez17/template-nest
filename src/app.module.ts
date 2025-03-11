@@ -6,14 +6,10 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './modules/auth/services/auth/auth.service';
 
 // Module
-import { RegisterModule } from './modules/register/register.module';
 import { DatabaseModule } from './database/database.module';
 import { UserModule } from './modules/users/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { MeModule } from './modules/me/me.module';
-
-// Web Socket
-import { WebSocketModule } from './websocket/websocket.module'
 
 // Config
 import { configSchema } from '../config/validationSchema';
@@ -32,8 +28,6 @@ import config from '../config/config';
     DatabaseModule,
     AuthModule,
     JwtModule,
-    WebSocketModule,
-    RegisterModule,
     MeModule,
   ],
   controllers: [],

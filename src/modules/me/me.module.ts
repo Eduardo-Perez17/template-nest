@@ -8,11 +8,10 @@ import { MeService } from './me.service';
 import { MeController } from './me.controller';
 
 // Entities
-import { Register } from '../register/entities/register.entity';
 import { User } from '../users/entities/user.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, Register]) ],
+  imports: [TypeOrmModule.forFeature([User])],
   providers: [MeService],
   controllers: [MeController],
 })

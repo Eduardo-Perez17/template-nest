@@ -22,10 +22,7 @@ export class MeService {
       const user = await this.usersRepository.findOne({
         where: {
           id: me.sub,
-        },
-        relations: {
-          register: true,
-        },
+        }
       });
 
       if (!user) {
