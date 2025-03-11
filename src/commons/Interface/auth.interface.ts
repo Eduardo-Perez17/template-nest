@@ -1,6 +1,7 @@
 export class IAuthLogin {
-  email: string;
   password: string;
+  email?: string;
+  user_name?: string;
 }
 
 export class PayloadToken {

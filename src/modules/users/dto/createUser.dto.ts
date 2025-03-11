@@ -13,6 +13,10 @@ export class CreateUserDto {
   readonly lastName: string;
 
   @IsNotEmpty()
+  @IsString()
+  readonly userName: string;
+
+  @IsNotEmpty()
   @IsEmail()
   readonly email: string;
 
@@ -31,6 +35,7 @@ export class ResponseCreateUserDto {
   lastName: string;
   email: string;
   role: string;
+  userName: string;
   deleteAt: Date;
   createdAt: Date;
   updatedAt: Date;

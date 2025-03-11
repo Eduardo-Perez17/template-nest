@@ -152,6 +152,22 @@ export class UserService {
     }
   }
 
+  async findUser({ user }: { user: string }) {
+    try {
+      const validation = user.includes('@')
+        ? { email: user }
+        : { userName: user };
+
+      const userFound = await this.usersRepository.findOne({
+        where: validation,
+      });
+
+      return userFound;
+    } catch (error) {
+      throw ErrorManager.createSignatureError(error.message);
+    }
+  }
+
   private validateUserPassword({ password }: { password: string }): void {
     if (!REJEXT_PASSWORD.test(password)) {
       throw new ErrorManager({

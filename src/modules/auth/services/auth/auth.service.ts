@@ -11,7 +11,7 @@ import { User } from '../../../users/entities/user.entity';
 // Models
 import { PayloadToken } from '../../models/token.model';
 
-// Interfaces
+// Commons
 import { IAuthLogin } from 'src/commons/Interface';
 import { ErrorManager } from 'src/commons/utils/error.manager';
 
@@ -24,12 +24,12 @@ export class AuthService {
 
   async validateUser({ email, password }: IAuthLogin) {
     try {
-      const user = await this.usersService.findByEmail({ email });
+      const user = await this.usersService.findUser({ user: email });
 
       if (!user)
         throw new ErrorManager({
           type: HttpStatus.FORBIDDEN,
-          message: 'Email or password are incorrect',
+          message: 'User or password are incorrect',
         });
 
       const isMatch = await bcrypt.compare(password, user.password);
@@ -40,7 +40,7 @@ export class AuthService {
 
       throw new ErrorManager({
         type: HttpStatus.CONFLICT,
-        message: 'Email or password are incorrect',
+        message: 'User or password are incorrect',
       });
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);

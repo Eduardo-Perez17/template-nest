@@ -21,17 +21,20 @@ export class User extends BaseEntity implements IUser {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'varchar', length: 255, name: 'first_name', default: null })
+  @Column({ type: 'varchar', length: 100, name: 'first_name', default: null })
   firstName: string;
 
-  @Column({ type: 'varchar', length: 255, name: 'last_name', default: null })
+  @Column({ type: 'varchar', length: 100, name: 'last_name', default: null })
   lastName: string;
 
-  @Column({ type: 'varchar', length: 255, unique: true, default: null })
+  @Column({ type: 'varchar', length: 100, name: 'user_name', default: null })
+  userName: string;
+
+  @Column({ type: 'varchar', length: 100, unique: true, default: null })
   email: string;
 
   @Exclude()
-  @Column({ type: 'varchar', length: 255, default: null })
+  @Column({ type: 'varchar', length: 100, default: null })
   password: string;
 
   @Column({ type: 'enum', enum: ROLES, default: ROLES.USER })
