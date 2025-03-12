@@ -13,12 +13,12 @@ export class CreateUserDto {
   readonly lastName: string;
 
   @IsNotEmpty()
-  @IsString()
-  readonly userName: string;
-
-  @IsNotEmpty()
   @IsEmail()
   readonly email: string;
+
+  @IsNotEmpty()
+  @IsString()
+  userName: string;
 
   @IsNotEmpty()
   @IsString()
