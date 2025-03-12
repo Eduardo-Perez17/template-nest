@@ -1,1 +1,1 @@
-export * from './rejextPassword.utils'
+export * from './rejext.utils'

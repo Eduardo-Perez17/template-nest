@@ -13,7 +13,7 @@ import { User } from './entities/user.entity';
 import { ErrorManager, errorManagerParamCharacter } from 'src/commons/utils';
 
 // Constants
-import { REJEXT_PASSWORD } from 'src/commons/constants';
+import { REJEXT_PASSWORD, REJEXT_USER_NAME } from 'src/commons/constants';
 
 // Interface
 import { IUserAuth } from 'src/commons/Interface';
@@ -26,12 +26,20 @@ export class UserService {
 
   async create(data: CreateUserDto): Promise<User> {
     try {
-      const user = await this.findByEmail({ email: data.email });
+      const user = await this.findUser({ user: data.email });
+      const userName = await this.findUserName({ userName: data.userName });
 
-      if (user) {
+      if (!REJEXT_USER_NAME.test(data.userName)) {
         throw new ErrorManager({
           type: HttpStatus.CONFLICT,
-          message: 'The email already exists',
+          message: 'Username must be between 4 and 16 characters, and can only contain letters, numbers, and underscores.',
+        });
+      }
+
+      if (user || userName) {
+        throw new ErrorManager({
+          type: HttpStatus.CONFLICT,
+          message: 'The email or userName already exists',
         });
       }
 
@@ -163,6 +171,14 @@ export class UserService {
       });
 
       return userFound;
+    } catch (error) {
+      throw ErrorManager.createSignatureError(error.message);
+    }
+  }
+
+  async findUserName({ userName }: { userName: string }): Promise<User> {
+    try {
+      return await this.usersRepository.findOneBy({ userName });
     } catch (error) {
       throw ErrorManager.createSignatureError(error.message);
     }
