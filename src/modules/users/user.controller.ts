@@ -17,7 +17,6 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { Throttle } from '@nestjs/throttler';
 
 // Services
 import { UserService } from './user.service';
@@ -49,12 +48,11 @@ import { ChangeUserPasswordBodyDto, UpdateUserDto } from './dto';
 // Decorators
 import { AllRoles, IsPublic, UserToken } from '../auth/decorators';
 
-@ApiTags('Users')
+@ApiTags('User')
 @ApiBearerAuth()
-@Controller('users')
+@Controller('user')
 @UseGuards(JwtAuthGuard, RolesGuard)
 @UseInterceptors(ResponseInterceptor)
-@Throttle({ default: { limit: 1000, ttl: 3600000 } })
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

@@ -21,26 +21,26 @@ export class User extends BaseEntity implements IUser {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'varchar', length: 100, name: 'first_name' })
+  @Column({ type: 'varchar', length: 100, name: 'first_name', default: null })
   firstName: string;
 
-  @Column({ type: 'varchar', length: 100, name: 'last_name' })
+  @Column({ type: 'varchar', length: 100, name: 'last_name', default: null })
   lastName: string;
 
-  @Column({ type: 'varchar', length: 100, name: 'user_name', unique: true })
+  @Column({ type: 'varchar', length: 100, name: 'user_name', unique: true, default: null })
   userName: string;
 
-  @Column({ type: 'varchar', length: 100, unique: true })
+  @Column({ type: 'varchar', length: 100, unique: true, default: null })
   email: string;
 
   @Exclude()
-  @Column({ type: 'varchar', length: 100 })
+  @Column({ type: 'varchar', length: 100, default: null })
   password: string;
 
   @Column({ type: 'enum', enum: ROLES, default: ROLES.USER })
   role: string;
 
-  @Column({ type: 'varchar', length: 8, default: null, name: 'otp_code' })
+  @Column({ type: 'varchar', length: 8, default: null })
   otpCode: string;
 
   @BeforeInsert()

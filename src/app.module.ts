@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
-import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
-import { APP_GUARD } from '@nestjs/core';
 
 // Services
 import { AuthService } from './modules/auth/services/auth/auth.service';
@@ -20,23 +18,6 @@ import config from '../config/config';
 
 @Module({
   imports: [
-    ThrottlerModule.forRoot([
-      {
-        name: 'short',
-        ttl: 1000,
-        limit: 10,
-      },
-      {
-        name: 'medium',
-        ttl: 60000,
-        limit: 100,
-      },
-      {
-        name: 'long',
-        ttl: 3600000,
-        limit: 1000,
-      },
-    ]),
     ConfigModule.forRoot({
       envFilePath: enviroments[process.env.NODE_ENV] || '.dev.env',
       load: [config],
@@ -50,12 +31,6 @@ import config from '../config/config';
     MeModule,
   ],
   controllers: [],
-  providers: [
-    AuthService,
-    {
-      provide: APP_GUARD,
-      useClass: ThrottlerGuard,
-    },
-  ],
+  providers: [AuthService],
 })
 export class AppModule {}
