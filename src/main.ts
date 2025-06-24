@@ -11,7 +11,7 @@ import * as morgan from 'morgan';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.use(morgan('dev'));
+  app.use(morgan(process.env.NODE_ENV));
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -24,11 +24,20 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1');
 
   const config = new DocumentBuilder()
-    .setTitle('Template Proyects')
-    .setDescription('The template project API description')
+    .setTitle('Glamofy API')
+    .setDescription(
+      'API para una aplicación de conexión entre profesionales de la belleza (barberos, manicuristas, peluquer@s) y clientes. Permite crear perfiles profesionales, buscar servicios cercanos mediante geolocalización, agendar citas, recibir calificaciones y ofrecer servicios a domicilio o en local.',
+    )
     .setVersion('1.0')
-    .addTag('tamplate project')
+    .addTag('Autenticación')
+    .addTag('Usuarios')
+    .addTag('Profesionales')
+    .addTag('Servicios')
+    .addTag('Reservas')
+    .addTag('Ubicación')
+    .addTag('Reputación')
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/v1/docs', app, document);
 
