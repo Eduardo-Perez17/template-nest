@@ -4,25 +4,29 @@ import {
   ExecutionContext,
   CallHandler,
 } from '@nestjs/common';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-// DTO'S
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { ResponseDto } from '../dtos';
 
 @Injectable()
 export class ResponseInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    const response = context.switchToHttp().getResponse();
+
     return next.handle().pipe(
       map((data) => {
-        if (context.switchToHttp().getResponse().statusCode < 400) {
-          return {
-            success: true,
-            data,
-          } as ResponseDto;
-        } else {
-          return data;
-        }
+        return {
+          success: true,
+          statusCode: response.statusCode,
+          data,
+        } as ResponseDto;
+      }),
+      catchError((error) => {
+        return throwError(() => ({
+          success: false,
+          statusCode: error.status || 500,
+          message: error.message || 'Unexpected error',
+        }));
       }),
     );
   }

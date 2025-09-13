@@ -1,5 +1,3 @@
-el dto envia los roles de la app
-enviar el status, no solo un success
 proteger la documentacion, necesitas un token admin
 
 ver porque hay muchos dev de logs en consola 
