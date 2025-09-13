@@ -1,6 +1,1 @@
-el dto envia los roles de la app
-enviar el status, no solo un success
-proteger la documentacion, necesitas un token admin
-
-ver porque hay muchos dev de logs en consola 
-app.use(morgan(process.env.NODE_ENV))
+validar que te llegue un id, body, si no enviar un error
