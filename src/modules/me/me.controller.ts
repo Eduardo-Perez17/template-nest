@@ -96,7 +96,7 @@ export class MeController {
   @ApiOperation({
     summary: 'Change authenticated user password',
     description:
-      'This endpoint allows the authenticated user to change their password using their email or username, current password, and new password.',
+      'This endpoint allows the authenticated user to change their password using their email, current password, and new password.',
   })
   @ApiResponse({
     status: 200,

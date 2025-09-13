@@ -1,8 +1,11 @@
+// Models
+import { ROLES } from '../models';
+
 export class IUser {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
-  userName: string;
-  role: string;
+  role: ROLES;
+  otpCode?: string;
 }

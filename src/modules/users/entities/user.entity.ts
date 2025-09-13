@@ -1,9 +1,4 @@
-import {
-  BeforeInsert,
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import * as bcrypt from 'bcrypt';
 
@@ -21,16 +16,13 @@ export class User extends BaseEntity implements IUser {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'varchar', length: 100, name: 'first_name', default: null })
+  @Column({ type: 'varchar', length: 100, name: 'first_name' })
   firstName: string;
 
-  @Column({ type: 'varchar', length: 100, name: 'last_name', default: null })
+  @Column({ type: 'varchar', length: 100, name: 'last_name' })
   lastName: string;
 
-  @Column({ type: 'varchar', length: 100, name: 'user_name', unique: true, default: null })
-  userName: string;
-
-  @Column({ type: 'varchar', length: 100, unique: true, default: null })
+  @Column({ type: 'varchar', length: 100, unique: true })
   email: string;
 
   @Exclude()
@@ -38,9 +30,9 @@ export class User extends BaseEntity implements IUser {
   password: string;
 
   @Column({ type: 'enum', enum: ROLES, default: ROLES.USER })
-  role: string;
+  role: ROLES;
 
-  @Column({ type: 'varchar', length: 8, default: null })
+  @Column({ type: 'varchar', length: 8, name: 'otp_code', default: null })
   otpCode: string;
 
   @BeforeInsert()

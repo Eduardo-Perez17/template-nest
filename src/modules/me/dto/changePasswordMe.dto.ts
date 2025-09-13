@@ -11,7 +11,7 @@ export class ChangeUserPasswordBodyDto {
   @MinLength(6)
   newPassword: string;
 
-  @ApiProperty({ description: 'Email or username' })
+  @ApiProperty({ description: 'Email' })
   @IsString()
-  emailOrUserName: string;
+  email: string;
 }

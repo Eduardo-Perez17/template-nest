@@ -1,9 +1,12 @@
 import { IsEmail, IsEnum, IsNotEmpty, IsString } from 'class-validator';
 
+// Interface
+import { IUser } from 'src/commons/Interface';
+
 // Commons
 import { ROLES } from 'src/commons/models';
 
-export class CreateUserDto {
+export class CreateUserDto implements IUser {
   @IsNotEmpty()
   @IsString()
   readonly firstName: string;
@@ -18,24 +21,20 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   @IsString()
-  userName: string;
-
-  @IsNotEmpty()
-  @IsString()
   password: string;
 
   @IsNotEmpty()
-  @IsEnum(ROLES)
+  @IsEnum(ROLES, { message: 'The role you are trying to use does not exist' })
   role: ROLES;
 }
 
-export class ResponseCreateUserDto {
+export class ResponseCreateUserDto extends CreateUserDto {
   id: number;
   firstName: string;
   lastName: string;
   email: string;
-  role: string;
-  userName: string;
+  role: ROLES;
+  otpCode: string;
   deleteAt: Date;
   createdAt: Date;
   updatedAt: Date;
