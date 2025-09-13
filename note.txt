@@ -1,1 +1,0 @@
-validar que te llegue un id, body, si no enviar un error
