@@ -24,7 +24,7 @@ export class AuthService {
 
   async validateUser({ email, password }: IAuthLogin) {
     try {
-      const user = await this.usersService.findUser({ user: email });
+      const user = await this.usersService.findByEmail({ email });
 
       if (!user)
         throw new ErrorManager({

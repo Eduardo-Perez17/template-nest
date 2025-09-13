@@ -67,10 +67,7 @@ export class MeService {
   }): Promise<User> {
     try {
       const user = await this.usersRepository.findOne({
-        where: [
-          { id: me.sub, email: body.emailOrUserName },
-          { id: me.sub, userName: body.emailOrUserName },
-        ],
+        where: { id: me.sub, email: body.email },
       });
 
       if (!user) {
