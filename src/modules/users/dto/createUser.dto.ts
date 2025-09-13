@@ -24,7 +24,7 @@ export class CreateUserDto implements IUser {
   password: string;
 
   @IsNotEmpty()
-  @IsEnum(ROLES)
+  @IsEnum(ROLES, { message: 'The role you are trying to use does not exist' })
   role: ROLES;
 }
 
